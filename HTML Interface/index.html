@@ -1,0 +1,367 @@
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <!--font awesome-->
+    <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.7.2/css/all.css"
+    integrity="sha384-fnmOCqbTlWIlj8LyTjo7mOUStjsKC4pOpQbqyi7RrhN7udi9RwhKkMHpvLbHG9Sr"
+    crossorigin="anonymous">
+    <!--Import Google Icon Font-->
+    <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
+   <!-- Compiled and minified CSS -->
+   <link rel="stylesheet" href="materialize.min.css">
+   <script src="materialize.min.js"></script>
+   
+    <title>AUTOMATED PLANT</title>
+
+    <style>
+      .btn, .btn-large, .btn-small {
+    text-decoration: none;
+    color:black;
+      }
+      
+        header{
+        background: url(img/plant.jpg);
+        background-size: cover;
+        background-position: center;
+        min-height:1000px;
+        }
+        .section{
+            padding-top : 6vw;
+            padding-bottom: 6vw;
+        }
+        
+        .tabs .indicator{
+      background-color: #1a237e;
+    }
+    .tabs .tab a:focus, .tabs .tab a:focus.active{
+      background: orange-lighten-2;
+    }
+    .counter-section{
+        margin: 2% auto;
+        position: absolute;
+        color: #fff;
+    }
+ 
+    .icon-box .fa
+    {
+        font-size: 100px;
+        
+        color: #ffc800;
+    }
+        
+        @media screen and (max-width: 670px){
+            header{
+                min-height: 500px;
+            }
+
+        }
+    </style>
+    <script src="https://code.jquery.com/jquery-3.3.1.min.js"></script>
+<script>
+	
+	$(document).ready( function () {
+	
+    setInterval(function(){
+      var urlAPI = "https://api.thingspeak.com/channels/799901/fields/4.json?results=2";
+	
+		jQuery.ajax({
+			url: urlAPI,
+			method: 'GET',
+			dataType: 'html',
+			async : false,
+			password : "rugvedm12@gmail.com",
+			username : "Mahindra@123",
+			context : this,
+			success: function(data){
+				
+				var jsonDATA = JSON.parse(data);
+				$("#moisture").html(jsonDATA.feeds[1].field4+" %");
+        var timeStamp = jsonDATA.feeds[1].created_at;
+
+var splittimeStamp = timeStamp.split("T");
+
+var onlyTime = splittimeStamp[1].split(":");
+
+var finalStamp = splittimeStamp[0]+" "+onlyTime[0]+":"+onlyTime[1];
+
+$("#idFooterMoist").html(finalStamp+" UTC");
+			},error : function(error){
+			
+			}
+      
+		});
+    var urlAPI = "https://api.thingspeak.com/channels/799901/fields/1.json?results=2";
+	
+		jQuery.ajax({
+			url: urlAPI,
+			method: 'GET',
+			dataType: 'html',
+			async : false,
+			password : "rugvedm12@gmail.com",
+			username : "Mahindra@123",
+			context : this,
+			success: function(data){
+				
+				var jsonDATA = JSON.parse(data);
+				$("#temp").html(jsonDATA.feeds[1].field1+"&#8451;");
+        var timeStamp = jsonDATA.feeds[1].created_at;
+
+var splittimeStamp = timeStamp.split("T");
+
+var onlyTime = splittimeStamp[1].split(":");
+
+var finalStamp = splittimeStamp[0]+" "+onlyTime[0]+":"+onlyTime[1];
+
+$("#Footer").html(finalStamp+" UTC");
+			},error : function(error){
+			
+			}
+      
+		});
+    var urlAPI = "https://api.thingspeak.com/channels/799901/fields/2.json?results=2";
+	
+		jQuery.ajax({
+			url: urlAPI,
+			method: 'GET',
+			dataType: 'html',
+			async : false,
+			password : "rugvedm12@gmail.com",
+			username : "Mahindra@123",
+			context : this,
+			success: function(data){
+				
+				var jsonDATA = JSON.parse(data);
+				$("#humid").html(jsonDATA.feeds[1].field2+" %");
+        var timeStamp = jsonDATA.feeds[1].created_at;
+
+var splittimeStamp = timeStamp.split("T");
+
+var onlyTime = splittimeStamp[1].split(":");
+
+var finalStamp = splittimeStamp[0]+" "+onlyTime[0]+":"+onlyTime[1];
+
+$("#Moisty").html(finalStamp+" UTC");
+			},error : function(error){
+			
+			}
+      
+		});
+    var urlAPI = "https://api.thingspeak.com/channels/799901/fields/5.json?results=2";
+	
+		jQuery.ajax({
+			url: urlAPI,
+			method: 'GET',
+			dataType: 'html',
+			async : false,
+			password : "rugvedm12@gmail.com",
+			username : "Mahindra@123",
+			context : this,
+			success: function(data){
+				
+				var jsonDATA = JSON.parse(data);
+				$("#wifi").html(jsonDATA.feeds[1].field5+" dBms");
+        $("#").html(jsonDATA.feeds[1].created_at);
+			},error : function(error){
+			
+			}
+      
+		});
+    var urlAPI = "https://api.thingspeak.com/channels/799901/fields/3.json?results=2";
+	
+		jQuery.ajax({
+			url: urlAPI,
+			method: 'GET',
+			dataType: 'html',
+			async : false,
+			password : "rugvedm12@gmail.com",
+			username : "Mahindra@123",
+			context : this,
+			success: function(data){
+				
+				var jsonDATA = JSON.parse(data);
+				$("#sun").html(jsonDATA.feeds[1].field3+" / 10");
+
+        var timeStamp = jsonDATA.feeds[1].created_at;
+
+                                  var splittimeStamp = timeStamp.split("T");
+
+                                  var onlyTime = splittimeStamp[1].split(":");
+
+                                  var finalStamp = splittimeStamp[0]+" "+onlyTime[0]+":"+onlyTime[1];
+
+        $("#FooterMoist").html(finalStamp+" UTC");
+			},error : function(error){
+			
+			}
+      
+		});
+    
+    }, 5000);
+		
+    
+	});
+	
+	
+</script>
+
+</head>
+<!-- navbar -->
+<header>
+    <nav class="nav-wrapper transparent">
+        <div class="container">
+            <a href="" class="brand-logo center">AUTOMATED PLANT</a>
+            
+        </div>
+    </nav>
+    <br><br>
+    <div class="container transparent">
+        
+        <div class="row">
+                <div class="col-sm-6 col-md4 col l4 mt-4 offset-s1 l4">
+            <div class="card transparent">
+              
+              <div class="card-content center" >
+                    
+                <span class="card-title">HUMIDITY</span>
+                <BR>
+                <div class="icon-box"> <i class="fa fa-cloud" aria-hidden="true"></i> </div>
+              
+                            <h5 class="card-content" id="humid">Loading..</h5>
+                            <div class="card-action ">
+                                    
+                                    <BR>
+                                    <span class="card-title activator waves-effect waves-light btn transparent " ><i class="material-icons left ">add</i>KNOW MORE</a></span></div>
+                                    <p><a href="#"></a></p>
+                                  </div>
+                                  <div class="card-reveal">
+                                    <span class="card-title" ><i class="material-icons right">close</i></span>
+                                    <p> Humidity is the amount of water vapour present in air. Water vapour, the gaseous state of water, is generally invisible to the human eye. </p>
+                                  </div>
+                                  <div class="card-footer text-muted" style="font-size:20px ;padding:0.1rem;text-align: end;"id="Moisty"></div></div>
+              </div>
+             
+            
+          
+         
+          <div class="col-sm-6 col-md4 col l4 mt-4 offset-s1 l4">
+                <div class="card transparent">
+                  
+                  <div class="card-content center">
+                    <span class="card-title ">TEMPERATURE</span>
+                    <br>
+                    <div class="icon-box"><i class="fa fa-thermometer-full" aria-hidden="true"></i> </div> 
+                  
+                    <h5 class="card-content" id="temp">Loading..</h5>
+                  <div class="card-action ">
+                        
+                        <BR>
+                          <span class="card-title activator waves-effect waves-light btn transparent " ><i class="material-icons left ">add</i>KNOW MORE</span></div>
+                          <p><a href="#"></a></p>
+                        </div>
+                      <div class="card-reveal">
+                            <span class="card-title" ><i class="material-icons right">close</i></span>
+                            <p> Temperature is a physical quantity expressing hot and cold. It is measured with a thermometer calibrated in one or more temperature scales.  </p>
+                          </div>
+                          <div class="card-footer text-muted" style="font-size:20px; padding:0.1rem;text-align: end;"id="Footer"></div></div>
+                 </div>
+                
+              
+              <div class="row">
+                  <div class="col-sm-6 col-md4 col l4 mt-4 offset-s1 l4">
+                    <div class="card transparent">
+                            <div class="card-content center">
+                            <span class="card-title ">MOISTURE</span>
+                      <BR>
+                        
+                            <div class="icon-box center"> <i class="fa fa-shower" aria-hidden="true"></i> </div>
+                        
+                            <h5 class="card-content" id="moisture">Loading..</h5>
+                            
+                                <div class="card-action ">
+                                
+                                <BR>
+                                  <span class="card-title activator waves-effect waves-light btn transparent " ><i class="material-icons left ">add</i>KNOW MORE</span></div>
+                          <p><a href="#"></a></p>
+                        </div>
+                      <div class="card-reveal">
+                            <span class="card-title" ><i class="material-icons right">close</i></span>
+                            <p><p> Moisture is the presence of a liquid, especially water, often in very trace amounts. Small amounts of water vapour may be found in the air sometimes.</p></p>
+                       </div>
+                        
+                       <div class="card-footer text-muted" style="font-size:20px; padding:0.1rem;text-align: end;"id="idFooterMoist"></div>
+                      </div>
+                     
+                    </div>
+                  </div>
+                  <!--<div class="col s8 offset-s2 l4">
+                        <div class="card transparent">
+                          
+                          <div class="card-content center">
+                                
+                            <span class="card-title">WIFI RANGE</span>
+                            <BR>
+                            <div class="icon-box"> <i class="fa fa-wifi" aria-hidden="true"></i> </div>
+                          
+                            <h5 class="card-content" id="wifi">Loading..</h5>
+                                    <div class="card-action ">
+                                    
+                                    <BR>
+                                      <span class="card-title activator waves-effect waves-light btn transparent " ><i class="material-icons left ">add</i>KNOW MORE</span></div>
+                          <p><a href="#"></a></p>
+                        </div>
+                      <div class="card-reveal">
+                            <span class="card-title" ><i class="material-icons right">close</i></span>
+                            <p> Wi-Fi is the name of a wireless networking technology that uses radio waves to provide wireless high-speed Internet and network connections.</p></div></div>
+                         
+                        
+                      </div>-->
+                      <div class="col-sm-6 col-md4 col l4 mt-4 offset-s1  l4">
+            <div class="card transparent">
+             
+              <div class="card-content center">
+                <span class="card-title">SUNLIGHT INTENSITY</span><br>
+                <div class="icon-box"><i class="fa fa-sun" aria-hidden="true"></i></div>
+                               
+                <h5 class="card-content" id="sun">Loading..</h5>
+                <div class="card-action ">
+                        
+                        <BR>
+                          <span class="card-title activator waves-effect waves-light btn transparent " ><i class="material-icons left ">add</i>KNOW MORE</span></div>
+                          <p><a href="#"></a></p>
+                        </div>
+                      <div class="card-reveal">
+                            <span class="card-title" ><i class="material-icons right">close</i></span>
+                            <p>Sunlight is a portion of the electromagnetic radiation given off by the Sun,our primary star, in particular infrared, visible, and ultraviolet light. </p>
+                        </div>
+                        <div class="card-footer text-muted" style="font-size:20px; padding:0.1rem;text-align: end;"id="FooterMoist"></div>
+               
+               
+              </div>
+             
+            </div>
+          </div>
+        </div>
+        
+      </div>
+     <!-- Compiled and minified JavaScript -->
+  
+  
+  <script>
+
+    $(document).ready(function(){
+        $('.sidenav').sidenav();
+        $('.materialboxed').materialbox();
+        $('.parallax').parallax();
+        $('.tabs').tabs();
+        $('.datepicker').datepicker({
+        disableWeekends : true
+
+    });
+    $('.tooltipped').tooltip();
+    $('.scrollspy').scrollSpy();
+    });
+  </script>
+</body>
+</html>
